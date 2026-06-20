@@ -10,51 +10,70 @@ The pipeline utilizes **Ollama** or cloud API providers for model inference and 
 
 ```mermaid
 graph TD
-    classDef db fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef agent fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef step fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff;
-    classDef def fill:#222,stroke:#fff,stroke-width:1px,color:#fff;
-
-    Claims[dataset/claims.csv]:::db --> Orchestrator[main.py: Pipeline Orchestrator]:::step
+    Claims[(dataset/claims.csv)] --> Orchestrator(main.py: Pipeline Orchestrator)
     
-    Orchestrator --> ContextExt{Deterministic Extraction?}:::step
+    Orchestrator --> ContextExt{Deterministic Extraction?}
     
-    ContextExt -- Match Found --> ContextBrief[ContextBrief Schema]:::step
-    ContextExt -- Ambiguity/No Match --> ContextCacheCheck{SQLite Cache Hit?}:::step
+    ContextExt -- Match Found --> ContextBrief[ContextBrief Schema]
+    ContextExt -- Ambiguity/No Match --> ContextCacheCheck{SQLite Cache Hit?}
     
     ContextCacheCheck -- Yes --> ContextBrief
-    ContextCacheCheck -- No --> ContextLLM[Context Agent LLM]:::agent
-    ContextLLM --> CacheWrite1[(SQLite Cache)]:::db
+    ContextCacheCheck -- No --> ContextLLM[Context Agent LLM]
+    ContextLLM --> CacheWrite1[(SQLite Cache)]
     ContextLLM --> ContextBrief
     
-    ContextBrief --> VisionAgent[Vision Agent VLM]:::agent
+    ContextBrief --> VisionAgent[Vision Agent VLM]
     
     subgraph Vision Agent Parallel Operations
-        VisionAgent --> ImageSplit[Split Semicolon Image Paths]:::step
-        ImageSplit --> Image1[Image 1]:::step
-        ImageSplit --> ImageN[Image N]:::step
-        Image1 --> VisionCacheCheck1{SQLite Cache Hit?}:::step
-        ImageN --> VisionCacheCheckN{SQLite Cache Hit?}:::step
-        VisionCacheCheck1 -- No --> VLMCall1[VLM Vision Call]:::agent
-        VisionCacheCheckN -- No --> VLMCallN[VLM Vision Call]:::agent
-        VLMCall1 --> CacheWrite2[(SQLite Cache)]:::db
+        VisionAgent --> ImageSplit[Split Semicolon Image Paths]
+        ImageSplit --> Image1[Image 1]
+        ImageSplit --> ImageN[Image N]
+        Image1 --> VisionCacheCheck1{SQLite Cache Hit?}
+        ImageN --> VisionCacheCheckN{SQLite Cache Hit?}
+        VisionCacheCheck1 -- No --> VLMCall1[VLM Vision Call]
+        VisionCacheCheckN -- No --> VLMCallN[VLM Vision Call]
+        VLMCall1 --> CacheWrite2[(SQLite Cache)]
         VLMCallN --> CacheWrite2
     end
     
-    VisionCacheCheck1 -- Yes --> Aggregation[Deterministic Aggregation Layer]:::step
+    VisionCacheCheck1 -- Yes --> Aggregation[Deterministic Aggregation Layer]
     VisionCacheCheckN -- Yes --> Aggregation
     VLMCall1 --> Aggregation
     VLMCallN --> Aggregation
     
-    Aggregation --> VisualEvidence[VisualEvidenceReport Schema]:::step
+    Aggregation --> VisualEvidence[VisualEvidenceReport Schema]
     
-    VisualEvidence --> Adjudicator[Deterministic Adjudicator]:::step
-    History[(dataset/user_history.csv)]:::db --> Adjudicator
+    VisualEvidence --> Adjudicator[Deterministic Adjudicator]
+    History[(dataset/user_history.csv)] --> Adjudicator
     
-    Adjudicator --> Justification[Deterministic Justification Generator]:::step
-    Requirements[(dataset/evidence_requirements.csv)]:::db --> Justification
+    Adjudicator --> Justification[Deterministic Justification Generator]
+    Requirements[(dataset/evidence_requirements.csv)] --> Justification
     
-    Justification --> Output[output.csv]:::db
+    Justification --> Output[output.csv]
+
+    style Claims fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
+    style Orchestrator fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style ContextExt fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style ContextBrief fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style ContextCacheCheck fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style ContextLLM fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
+    style CacheWrite1 fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
+    style VisionAgent fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
+    style ImageSplit fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style Image1 fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style ImageN fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style VisionCacheCheck1 fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style VisionCacheCheckN fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style VLMCall1 fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
+    style VLMCallN fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
+    style CacheWrite2 fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
+    style Aggregation fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style VisualEvidence fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style Adjudicator fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style History fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
+    style Justification fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
+    style Requirements fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
+    style Output fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
 ---
