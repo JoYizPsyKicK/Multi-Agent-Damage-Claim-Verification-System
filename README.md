@@ -51,29 +51,29 @@ graph TD
     
     Justification --> Output[output.csv]
 
-    style Claims fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
-    style Orchestrator fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style ContextExt fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style ContextBrief fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style ContextCacheCheck fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style ContextLLM fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
-    style CacheWrite1 fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
-    style VisionAgent fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
-    style ImageSplit fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style Image1 fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style ImageN fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style VisionCacheCheck1 fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style VisionCacheCheckN fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style VLMCall1 fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
-    style VLMCallN fill:#122a47,stroke:#fff,stroke-width:2px,color:#fff
-    style CacheWrite2 fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
-    style Aggregation fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style VisualEvidence fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style Adjudicator fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style History fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
-    style Justification fill:#1c3b1e,stroke:#fff,stroke-width:1px,color:#fff
-    style Requirements fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
-    style Output fill:#2d124d,stroke:#fff,stroke-width:2px,color:#fff
+    style Claims fill:#5233a3 !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style Orchestrator fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style ContextExt fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style ContextBrief fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style ContextCacheCheck fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style ContextLLM fill:#1f6feb !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style CacheWrite1 fill:#5233a3 !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style VisionAgent fill:#1f6feb !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style ImageSplit fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style Image1 fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style ImageN fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style VisionCacheCheck1 fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style VisionCacheCheckN fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style VLMCall1 fill:#1f6feb !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style VLMCallN fill:#1f6feb !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style CacheWrite2 fill:#5233a3 !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style Aggregation fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style VisualEvidence fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style Adjudicator fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style History fill:#5233a3 !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style Justification fill:#238636 !important,stroke:#fff !important,stroke-width:1px,color:#fff !important
+    style Requirements fill:#5233a3 !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
+    style Output fill:#5233a3 !important,stroke:#fff !important,stroke-width:2px,color:#fff !important
 ```
 
 ---
